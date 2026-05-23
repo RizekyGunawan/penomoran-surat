@@ -1,0 +1,4 @@
+# Blokir akses langsung ke file upload
+# Akses hanya boleh melalui controller viewNotaDinas()
+Order Deny,Allow
+Deny from all

@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+APP_DIR="/home/digi/srv/penomoran-surat"
+
+msg() { echo "[deploy] $*"; }
+
+compose_cmd() {
+if docker compose version >/dev/null 2>&1; then echo "docker compose"; return; fi
+if command -v docker-compose >/dev/null 2>&1; then echo "docker-compose"; return; fi
+echo "Docker Compose not found"; exit 1
+}
+
+ensure_env_file() {
+if [[ ! -f "${APP_DIR}/.env" ]]; then
+if [[ -f "${APP_DIR}/.env.example" ]]; then
+msg "Copying .env.example → .env"
+cp "${APP_DIR}/.env.example" "${APP_DIR}/.env"
+else
+msg ".env not found, skip"
+fi
+fi
+}
+
+compose_up() {
+local compose
+compose=$(compose_cmd)
+
+msg "Build & run container"
+${compose} up -d --build
+
+msg "Run migration"
+${compose} exec -T web php spark migrate --all || true
+
+msg "Clear cache"
+${compose} exec -T web php spark cache:clear || true
+}
+
+compose_down() {
+local compose
+compose=$(compose_cmd)
+${compose} down || true
+}
+
+deploy_all() {
+msg "Start deploy"
+
+cd ${APP_DIR}
+
+compose_down
+ensure_env_file
+compose_up
+
+msg "Deploy selesai 🚀"
+}
+
+case "${1:-}" in
+deploy)
+deploy_all
+;;
+*)
+echo "Usage: ./deploy.sh deploy"
+exit 1
+;;
+esac

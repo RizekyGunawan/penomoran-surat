@@ -1,0 +1,330 @@
+/*
+ * cetak-surat.css
+ * CSS untuk halaman cetak dokumen surat resmi Kemenko PMK
+ * Mengikuti Permenko PMK Nomor 1 Tahun 2024:
+ *   - Kertas A4, font Arial 12pt
+ *   - Margin: kiri 3cm, kanan 2cm, atas 2cm, bawah 2.5cm
+ */
+
+/* ──────────────── Reset & Base ──────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 12pt;
+    color: #000;
+    background: #e5e5e5;
+}
+
+/* ──────────────── Toolbar (hanya tampil di layar, hilang saat cetak) ──────────────── */
+#toolbar-cetak {
+    background: #1e3a5f;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    box-shadow: 0 2px 8px rgba(0,0,0,.3);
+}
+
+#toolbar-cetak .toolbar-title {
+    font-size: 13pt;
+    font-weight: 700;
+    letter-spacing: .5px;
+}
+
+#toolbar-cetak .toolbar-info {
+    font-size: 10pt;
+    opacity: .8;
+}
+
+#toolbar-cetak .toolbar-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-cetak {
+    background: #10b981;
+    color: #fff;
+    border: none;
+    padding: 8px 22px;
+    border-radius: 6px;
+    font-size: 11pt;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background .2s;
+}
+
+.btn-cetak:hover { background: #059669; }
+
+.btn-kembali {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,.5);
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-size: 11pt;
+    cursor: pointer;
+    transition: background .2s;
+}
+
+.btn-kembali:hover { background: rgba(255,255,255,.1); }
+
+/* ──────────────── Halaman Kertas ──────────────── */
+.halaman-surat {
+    width: 21cm;
+    min-height: 29.7cm;
+    margin: 20px auto;
+    background: #fff;
+    padding: 2cm 2cm 2.5cm 3cm;   /* atas kanan bawah kiri sesuai Permenko */
+    box-shadow: 0 4px 24px rgba(0,0,0,.15);
+}
+
+/* ──────────────── Kop Naskah Dinas (Surat Dinas, SPT) ──────────────── */
+.kop-naskah-dinas {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 6px;
+    border-bottom: 3px solid #000;
+    margin-bottom: 0;
+}
+
+.kop-naskah-dinas img {
+    width: 72px;
+    height: auto;
+}
+
+.kop-naskah-dinas .kop-teks {
+    flex: 1;
+    text-align: center;
+}
+
+.kop-naskah-dinas .kop-teks .instansi-induk {
+    font-size: 10pt;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.kop-naskah-dinas .kop-teks .instansi-utama {
+    font-size: 16pt;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.2;
+}
+
+.kop-naskah-dinas .kop-teks .instansi-sub {
+    font-size: 10pt;
+    margin-top: 2px;
+    text-transform: uppercase;
+}
+
+.kop-naskah-dinas .kop-teks .kop-alamat {
+    font-size: 8pt;
+    margin-top: 4px;
+    color: #333;
+}
+
+/* ──────────────── Kop Jabatan (Nota Dinas) ──────────────── */
+.kop-jabatan {
+    text-align: center;
+    padding-bottom: 6px;
+    border-bottom: 3px solid #000;
+    margin-bottom: 0;
+}
+
+.kop-jabatan .jabatan-nama {
+    font-size: 14pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+.kop-jabatan .jabatan-instansi {
+    font-size: 11pt;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+/* ──────────────── Judul Surat ──────────────── */
+.judul-surat {
+    text-align: center;
+    margin: 20px 0 16px;
+}
+
+.judul-surat h2 {
+    font-size: 13pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: underline;
+}
+
+.judul-surat .nomor-surat {
+    font-size: 11pt;
+    margin-top: 4px;
+}
+
+/* ──────────────── Header Nota Dinas ──────────────── */
+.header-nota {
+    margin: 20px 0 16px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.header-nota td {
+    font-size: 11pt;
+    padding: 2px 0;
+    vertical-align: top;
+}
+
+.header-nota .label-col { width: 90px; }
+.header-nota .sep-col   { width: 12px; text-align: center; }
+
+/* ──────────────── Garis pemisah header ──────────────── */
+.garis-header { border-top: 1px solid #000; margin: 12px 0 16px; }
+
+/* ──────────────── Isi Surat — Area yang bisa diketik user ──────────────── */
+.isi-surat-wrapper { margin: 0 0 24px; }
+
+.isi-label {
+    font-size: 9pt;
+    color: #888;
+    margin-bottom: 4px;
+    font-style: italic;
+}
+
+/* Input & textarea area yang bisa diisi */
+.field-isi {
+    width: 100%;
+    border: none;
+    border-bottom: 1px dashed #aaa;
+    outline: none;
+    font-family: Arial, sans-serif;
+    font-size: 11pt;
+    padding: 4px 2px;
+    background: #fffdf0;
+    resize: vertical;
+    min-height: 32px;
+    display: block;
+}
+
+.field-isi:focus { border-bottom-color: #1e3a5f; background: #f0f7ff; }
+
+.field-inline {
+    display: inline-block;
+    border: none;
+    border-bottom: 1px dashed #aaa;
+    outline: none;
+    font-family: Arial, sans-serif;
+    font-size: 11pt;
+    padding: 2px 4px;
+    background: #fffdf0;
+    min-width: 200px;
+}
+
+.field-inline:focus { border-bottom-color: #1e3a5f; background: #f0f7ff; }
+
+/* Paragraf isi surat */
+.isi-paragraf {
+    text-align: justify;
+    text-indent: 2em;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* ──────────────── Tabel Konsideran (SPT) ──────────────── */
+.tabel-konsideran {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 12px;
+}
+
+.tabel-konsideran td {
+    font-size: 11pt;
+    vertical-align: top;
+    padding: 3px 0;
+}
+
+.tabel-konsideran .konsideran-label { width: 120px; font-weight: normal; }
+.tabel-konsideran .konsideran-sep   { width: 16px; text-align: center; }
+
+/* ──────────────── Kaki Surat (Tempat, Tanggal, TTD) ──────────────── */
+.kaki-surat {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 32px;
+}
+
+.kaki-surat .blok-ttd {
+    text-align: center;
+    min-width: 220px;
+}
+
+.kaki-surat .blok-ttd .tempat-tanggal {
+    font-size: 11pt;
+    margin-bottom: 4px;
+}
+
+.kaki-surat .blok-ttd .jabatan-ttd {
+    font-size: 11pt;
+    font-weight: 700;
+    margin-bottom: 70px;  /* ruang untuk tanda tangan */
+}
+
+.kaki-surat .blok-ttd .nama-ttd {
+    font-size: 11pt;
+    font-weight: 700;
+    text-decoration: underline;
+    margin-bottom: 2px;
+}
+
+.kaki-surat .blok-ttd .nip-ttd {
+    font-size: 11pt;
+}
+
+/* ──────────────── Hint tooltip saat layar (hilang saat cetak) ──────────────── */
+.field-hint {
+    font-size: 8pt;
+    color: #888;
+    margin-top: 2px;
+    font-style: italic;
+}
+
+/* ──────────────── @media print ──────────────── */
+@media print {
+    @page {
+        size: A4;
+        margin: 2cm 2cm 2.5cm 3cm;
+    }
+
+    body { background: #fff; }
+
+    #toolbar-cetak { display: none !important; }
+
+    .halaman-surat {
+        width: 100%;
+        min-height: auto;
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    /* Semua input/textarea terlihat sebagai teks biasa */
+    .field-isi, .field-inline {
+        border: none !important;
+        background: transparent !important;
+        padding: 0 !important;
+        resize: none;
+    }
+
+    .field-hint  { display: none !important; }
+    .isi-label   { display: none !important; }
+}

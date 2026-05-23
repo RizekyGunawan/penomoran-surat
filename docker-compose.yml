@@ -1,0 +1,73 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: penomoran_web
+    restart: unless-stopped
+
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html/public
+      - CI_ENVIRONMENT=${CI_ENVIRONMENT:-production}
+      - TZ=Asia/Jakarta
+      - PHP_MEMORY_LIMIT=512M
+      - PHP_MAX_EXECUTION_TIME=300
+      - PHP_OPCACHE_MEMORY_CONSUMPTION=256
+      - PHP_OPCACHE_MAX_ACCELERATED_FILES=20000
+
+    ports:
+      - "127.0.0.1:8087:80"
+
+    volumes:
+      - ./:/var/www/html
+
+    depends_on:
+      - redis
+
+    networks:
+      - penomoran_net
+
+    deploy:
+      resources:
+        limits:
+          cpus: "1.5"
+          memory: 1G
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  redis:
+    image: redis:7-alpine
+    container_name: penomoran_redis
+    restart: unless-stopped
+
+    command:
+      - redis-server
+      - --appendonly
+      - "no"
+      - --maxmemory
+      - "256mb"
+      - --maxmemory-policy
+      - "allkeys-lru"
+
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+    networks:
+      - penomoran_net
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "2"
+
+networks:
+  penomoran_net:
+    name: penomoran_net
