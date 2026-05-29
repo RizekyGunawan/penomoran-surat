@@ -3,6 +3,7 @@
 A web-based application for managing official document numbering in a government organization. Built to replace manual workflows with an automated, auditable, and role-based system.
 
 # Features
+---
 - Automatic Sequential Numbering — Unique document numbers generated per type, per year
 - 9 Document Types — Official letters, travel orders, invitations, circulars, and more
 - Role-Based Access Control — 4 roles: Admin, Staff, Unit Secretary, Central Correspondence
@@ -14,6 +15,7 @@ A web-based application for managing official document numbering in a government
 ---
 
 # Project Structure
+---
 app/
 ├── Controllers/       # Auth, Penomoran, Admin, TU Unit, TU Persuratan
 ├── Models/            # Data models with audit callbacks
