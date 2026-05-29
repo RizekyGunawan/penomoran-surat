@@ -1,6 +1,6 @@
 # Penomoran Surat
 
-A web-based application for managing official document numbering in a government organization. Built to replace manual workflows with an automated, auditable, and role-based system.
+> A web-based application for managing official document numbering in a government organization. Built to replace manual workflows with an automated, auditable, and role-based system.
 
 # Features
 - Automatic Sequential Numbering — Unique document numbers generated per type, per year
@@ -24,5 +24,3 @@ app/
 ├── Views/             # Server-rendered templates
 └── Database/
     └── Migrations/    # 17 versioned schema migrations
----
-
