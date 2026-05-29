@@ -13,7 +13,8 @@ A web-based application for managing official document numbering in a government
 - Dockerized — Containerized deployment with Docker Compose and Jenkins CI/CD
 ---
 
-> Project Structure
+# Project Structure
+```
 app/
 ├── Controllers/       # Auth, Penomoran, Admin, TU Unit, TU Persuratan
 ├── Models/            # Data models with audit callbacks
