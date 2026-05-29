@@ -9,7 +9,7 @@ A web-based application for managing official document numbering in a government
 - SSO Integration — Single Sign-On authentication with local login fallback
 - Audit Logging — Every action (create, edit, delete, cancel) is tracked
 - Print Templates — Ready-to-print output for most document types
-- Access Request Workflow** — Unit-level access requests with approval process
+- Access Request Workflow — Unit-level access requests with approval process
 - Dockerized — Containerized deployment with Docker Compose and Jenkins CI/CD
 ---
 
