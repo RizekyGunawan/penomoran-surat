@@ -105,7 +105,7 @@ Sistem akan mengotomatisasi *generate* nomor surat dengan batasan sistem dan atu
 | **Riwayat Surat Pribadi** | Read | Read | Read |
 | **Hapus Surat (Hard Delete)**| ❌ | ❌ | ❌ |
 
-> **Catatan Security:** Penghapusan permanen (*hard delete*) **tidak diizinkan** untuk *role* manapun guna menjaga integritas *Audit Log* institusi.
+> **Catatan Security:** Penghapusan permanen (*hard delete*) **tidak diizinkan** untuk *role* manapun guna menjaga integritas *Log* institusi.
 
 ### d. Non-functional Requirement
 *   **Availability:** Sistem dapat diakses menggunakan jaringan internet setiap hari (Senin-Minggu) selama 24 jam.
@@ -118,7 +118,7 @@ Sistem akan mengotomatisasi *generate* nomor surat dengan batasan sistem dan atu
 ### e. Roadmap & Scope (Iterasi 1)
 Rilis pertama (Iterasi 1) mencakup seluruh fitur inti persuratan: Pengajuan otomatis, pelacakan riwayat, pembatalan dengan batas waktu, dan *dashboard monitoring* sentral. 
 
-*(Di luar lingkup: Generate format fisik dokumen PDF secara keseluruhan dan integrasi API ke sistem e-Office eksternal lintas kementerian).*
+*(Di luar lingkup: Generate format fisik dokumen PDF secara keseluruhan dan integrasi API ke sistem Persuratan eksternal lintas kementerian atau SRIKANDI).*
 
 ---
 *Dokumen ini disusun sebagai bagian dari portofolio Product Management & System Analysis.*
