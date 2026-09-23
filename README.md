@@ -1,4 +1,4 @@
-# 📄 Sistem Penomoran Surat Otomatis (SATU KEMENKO PMK)
+# Sistem Penomoran Surat Otomatis
 
 > Automated document numbering system with role-based access, SSO integration, and Docker deployment.
 
